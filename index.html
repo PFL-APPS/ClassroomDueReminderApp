@@ -7,7 +7,7 @@
         <meta name="twitter:description" content="Google Classroom上の課題の期限に対し、リマインド通知を設定(例えば：期限1時間前、3時間前)することができるアプリです。" />
         <meta name="twitter:image" content="https://drive.google.com/uc?id=1rIRnikmHEHYilbN4dcZTT3JTjK5YBPQX" />
         <meta name="viewport" content="initial-scale=1">
-        <meta name=”robots” content=”noindex”>
+        <meta name="robots" content="noindex">
         <link rel="icon" href="https://drive.google.com/uc?id=1rIRnikmHEHYilbN4dcZTT3JTjK5YBPQX">
         <title>Classroom課題リマインダーAppについて</title>
         <style type="text/css">
@@ -131,7 +131,7 @@
                 document.getElementById("prText").innerHTML = IfThenElse(
                     cnt%2==1,
                     "Classroom課題リマインダーを使うと、課題の締切前に通知を設定することができます。",
-                    "添付した提出物がまだ提出されていない場合に、期限1時間前などにメールでリマインドします。"
+                    "添付した提出物がまだ提出されていない場合に、自動で期限1時間前などにメール通知します。"
                 );
                 document.getElementById("primage").setAttribute("src",
                     IfThenElse(cnt%2==1,imgs.pr1.src,imgs.pr2.src)
