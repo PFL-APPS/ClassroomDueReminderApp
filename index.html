@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Classroom課題リマインダーApp - Solo版" />
+        <meta name="twitter:description" content="Google Classroom上の課題の期限に対し、リマインド通知を設定(例えば：期限1時間前、3時間前)することができるアプリです。" />
+        <meta name="twitter:image" content="https://drive.google.com/uc?id=1rIRnikmHEHYilbN4dcZTT3JTjK5YBPQX" />
+        <meta name="viewport" content="initial-scale=1">
+        <link rel="icon" href="https://drive.google.com/uc?id=1rIRnikmHEHYilbN4dcZTT3JTjK5YBPQX">
+        <title>Classroom課題リマインダーAppについて</title>
+        <style type="text/css">
+            a.btnblue {
+                transition:0.3s;
+                background-color:mediumblue;
+                box-shadow: 1px 1px 2px 1px rgba(0,0,0,.3);
+                color: white;
+            }
+            a.btnblue:hover {
+                transition:0.2s;
+                background-color:royalblue
+                /*text-shadow: 1px 0px 0px gray;*/
+            }
+            a.btnblue:active {
+                background-color:skyblue;
+                color: rgba(0,0,0,.7);
+                transition:0.1s;
+            }
+            @keyframes inandout1 {
+                0% {opacity: 0;}
+                15% {opacity: 1;}
+                85% {opacity: 1;}
+                100% {opacity: 0;}
+            }
+            @keyframes inandout2 {
+                0% {opacity: 0; transform: rotateY(45deg);}
+                15% {opacity: 1;}
+                20% {transform: rotateY(0deg);}
+                80% {transform: rotateY(0deg);}
+                85% {opacity: 1;}
+                100% {opacity: 0; transform: rotateY(-45deg);}
+            }
+            @keyframes floatin {
+                0% {opacity:0; transform:translateY(10px);}
+                100% {opacity:1; transform:translateY(0);}
+            }
+        </style>
+    </head>
+    <body style="padding:0; margin:0; background-color: white;">
+        <header id="header" style="background-image: linear-gradient(to bottom, rgb(0,30,185),rgb(0,150,180)); background-color:seagreen; width:100%; height: 4em; box-shadow: 0px 2px 2px 0 gray; position:fixed; z-index:1 ;">
+            <div style="user-select:none; display: flex;" id="headerdiv">
+                <div style="overflow-x: hidden; word-break: keep-all; display: flex; flex-wrap: nowrap; padding: 1em;">
+                    <p style="margin: 0; text-shadow: 3px 3px 3px rgba(0,0,0,.5);"><font size="+2" color="white">Classroom課題リマインダーApp</font></p>
+                </div>
+            </div>
+        </header>
+        <div style="width:100vw; height:100vh;">
+            <div id="pseudoheader" style="height:4em ; margin: 0;"></div>
+            <div id="mainwrap" style="height:calc(100vh - 5em); max-width: 1600px; max-height: calc(100vh - 4em); padding: 0.5em; margin:0 auto;">
+                <h3 style="text-align: center; color:mediumblue; animation:floatin 0.7s ease-out; animation-delay: 0s;">Google Classroom上の課題にリマインドを設定できます。</h3>
+                <div id="mainflex" style="display: flex; flex-wrap: wrap;">
+                    <img id="primage" style="margin: auto; animation: inandout2 7s infinite;">
+                    <div style="margin: auto; padding: 1em;">
+                        <h1 id="prTitle" style="animation: inandout1 7s linear infinite;">課題の期限前に<br>リマインドを設定</h1>
+                        <p id="prText" style="max-width: 70vw; animation: inandout1 7s linear infinite;">Classroom課題リマインダーを使うと、課題の締切前に通知を設定することができます。</p>
+                        <div name="landscapeBlank" style="height: 1em;"></div>
+                        <div style="text-align: center; padding: 1em; margin: 0.5em;">
+                            <a href="https://script.google.com/a/macros/dc.tohoku.ac.jp/s/AKfycbz4QEjTyFTtv4-16uJ1WgXeGA-uTKJyl6PNzWahp8k/dev/classworkduenotifier" style="padding: 0.75em; border-radius: 2em; text-align: center; width: fit-content; text-decoration: none; animation:floatin 0.7s ease-out; display: block; margin: auto;" class="btnblue">
+                                <font size="+2" style="vertical-align: middle;">　使ってみる　</font>
+                            </a>
+                        </div>
+                        <small id="accountmsg" style="max-width:75vw; word-break:break-all; display: block; text-align: center; margin: auto; animation:floatin 0.7s ease-out;">
+                            <img src="https://drive.google.com/uc?id=1BGwxYcVHBxoLGohP7X-iept31kWcpQHS" style="width:1.5em; height:1.5em; vertical-align:middle">使用するにはdcアカウントが必要です。<br>リンク先が正しく表示されない場合、他のGoogleアカウントからのログアウトを試してください。
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="application/javascript">
+            const IfThenElse = (condition,thn,els)=>{if (condition) {return thn;} else {return els;}}
+            var elem = {};
+            var imgs = {};
+            var Portrait = null;
+            imgs.pr1 = new Image(); 
+            imgs.pr1.src = "https://drive.google.com/uc?id=1oTI0_TBkJwa0zi0yFAPjT7IS4Ka99PIO";
+            imgs.pr2 = new Image(); 
+            imgs.pr2.src = "https://drive.google.com/uc?id=1PEi9Dpx3lO8WRDcIepdpyZVSuXmepayx";
+            imgs.icon_good = new Image();
+            imgs.icon_good.src = "https://drive.google.com/uc?id=15pkGKpKA3vFLCq9O_SwAPKgbXngBp8zZ"
+            imgs.dc = new Image();
+            imgs.dc.onload = function() {
+                document.getElementById("accountmsg").innerHTML = `<img src="${imgs.icon_good.src}" style='width:1.5em; height:1.5em; vertical-align:middle'>dcアカウントへのログインが確認できました。<br>もしページが正しく表示されない場合、他のGoogleアカウントからのログアウトを試してください。`
+            }
+            imgs.dc.src = "https://drive.google.com/uc?id=1E8UtMj9XFK7_MjT5TQ73ah4Gce4aGqfZ";
+            for (let id of ["primage","mainwrap"]) {
+                elem[id] = document.getElementById(id);
+            }
+            elem.primage.setAttribute("src",imgs.pr1.src);
+            window.onresize = resizeThings;
+
+            function resizeThings() {
+                let mainWidth = elem.mainwrap.clientWidth;
+                let mainHeight = elem.mainwrap.clientHeight;
+                Portrait = IfThenElse(mainWidth>mainHeight*2,false,true)
+                document.getElementById("mainflex").style["flex-wrap"] = IfThenElse(Portrait,"wrap","nowrap")
+                let primgSize =  Math.min( Math.floor( IfThenElse(Portrait,elem.mainwrap.clientWidth*0.8,elem.mainwrap.clientWidth*0.35) ),450 );
+                elem.primage.style.width = primgSize+"px";
+                elem.primage.style.height = primgSize/4*3+"px";
+                for (let element of document.getElementsByName("landscapeBlank")) {
+                    element.style.display = IfThenElse(Portrait,"none","block");
+                }
+                return;
+            }
+            resizeThings();
+
+            var cnt=0;
+            function switchDisplay() {
+                let elis = [
+                    document.getElementById("prTitle"),
+                    document.getElementById("prText"),
+                    document.getElementById("primage")
+                ]
+                for (let element of elis) { 
+                    element.style.animationPlayState="paused";
+                    element.style.display="none";
+                }
+                document.getElementById("prTitle").innerHTML = IfThenElse(
+                    cnt%2==1,"課題の期限前に<br>リマインドを設定","提出ボタン押し忘れを<br>検知してメール"
+                );
+                document.getElementById("prText").innerHTML = IfThenElse(
+                    cnt%2==1,
+                    "Classroom課題リマインダーを使うと、課題の締切前に通知を設定することができます。",
+                    "添付した提出物がまだ提出されていない場合に、期限1時間前などにメールでリマインドします。"
+                );
+                document.getElementById("primage").setAttribute("src",
+                    IfThenElse(cnt%2==1,imgs.pr1.src,imgs.pr2.src)
+                )
+                for (let element of elis) { 
+                    element.style.display="block";
+                    element.style.animationPlayState="running";
+                }
+                cnt++;
+            }
+            setInterval(switchDisplay,7000)
+        </script>
+    </body>
+</html>
